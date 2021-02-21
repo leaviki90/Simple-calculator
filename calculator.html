@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>JS NUMBERS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Violeta Petrović">
+        <meta name="description" content="Domaći zadatak - Calculator">
+        <meta name="keywords" content="functions, calculator, javascript ">
+
+
+        <style>
+
+            *{
+                box-sizing: border-box;
+            }
+            button{
+                width: 45px;
+                height: 40px;
+                border:1px solid #000;
+                font-size: 20px;
+                line-height: 38px;
+                vertical-align: top;
+                background: #f0f0f0;
+                margin-bottom: 10px;
+                cursor:pointer;
+                display: inline-block;
+                border-radius: 3px;
+            }
+            input{
+                height: 40px;
+                border:1px solid #000;
+                padding: 0 5px;
+                vertical-align: top;
+                background: #f2f2f2;
+                font-size: 24px;
+                width: 240px;
+                margin-bottom: 10px;
+                color:#000;
+            }
+            .long{
+                width: 95px;
+            }
+            .opp{
+                background: orange;
+                color:#fff;
+            }
+        </style>
+    </head>
+    <body>
+
+       
+
+        
+
+        <h2>KALKULATOR</h2>
+
+        
+        <input type="text" placeholder="0" value="" id="unos" disabled="" style="text-align: right">
+
+        <br>
+        <button onclick="squareRoot();">&Sqrt;</button><!--kvadratni koren-->
+        <button onclick="onClick('(');">&lpar;</button><!--leva zagrada-->
+        <button onclick="onClick(')');">&rpar;</button><!--desna zagrada-->
+        <button onclick="clearLastInput();">&lang;-</button> <!--brisanje jednog elementa-->
+        <button onclick="setInputValue('');">AC</button> <!-- brisanje svega-->
+        
+        
+
+        <br>
+        <button onclick="squared();">x<sup>2</sup></button> <!--na kvadrat-->
+        <button onclick="onClick(7);">7</button> <!--Unesi 7-->
+        <button onclick="onClick(8);">8</button><!--Unesi 8-->
+        <button onclick="onClick(9);">9</button> <!--Unesi 9-->
+        <button onclick="onClick('/');" class="opp">/</button> <!--podeli-->
+        <br>
+        <button onclick='cosinus();'>cos</button>  <!--izracunaj kosinus-->
+        <button onclick="onClick(4);">4</button>  <!--Unesi 4-->
+        <button onclick="onClick(5);">5</button>  <!--Unesi 5-->
+        <button onclick="onClick(6);">6</button>  <!--Unesi 6-->
+        <button onclick="onClick('*');" class="opp">x</button>  <!--pomnozi-->
+        <br>
+        <button onclick="sinus();">sin</button>  <!--Izracunaj sinus-->
+        <button onclick="onClick(1);">1</button>  <!--Unesi 1-->
+        <button onclick="onClick(2);">2</button> <!--Unesi 2-->
+        <button onclick="onClick(3);">3</button> <!--Unesi 3-->
+        <button onclick="onClick('-');" class="opp">-</button>  <!--oduzimanje-->
+        <br>
+        
+        <button onclick="onClick(0);" class="long">0</button>  <!--Unesi 0-->
+        <button onclick="onClick('.');">.</button> <!--Unesi .-->
+        <button onclick="calculateValue();" class="opp">=</button> <!--IZRACUNAJ-->
+        <button onclick="onClick('+');" class="opp">+</button>  <!--saberi -->
+
+
+
+
+
+
+        <script type="text/javascript">
+
+
+
+            //Napraviti kalkulator
+            //Kalkulator treba da sadrzi brojeve od 0 - 9 koji su button
+            //input za ispisivanje i unos type(text), DISABLED
+            // dugme za resetovanje unosa
+            //dugme za brisanje zadnje unesene vrednosti
+            //dugmice za +, -, *, / , racunanje kvadratnog koren,
+            // racunanje kvadrata, sinusa i cosinusa
+            // klikom na dugmice 0-9, +,-,(,),*,/,. 
+            // treba da se prvo pokupi vrednost iz inputa
+            // da se na nju doda kliknuti element i da se to ponovo upise u input
+            // = vrsi racunanje unetog izraza i upis u input
+            // AC brise sve iz inputa
+            // <- Brise poslednji uneti karakter
+            // sin, cos, kvadrat i koren su funkcionalnosti koje racunate na sledeci nacin
+            // klikom na jedno od ova 4 dugmeta treba da pokupite vrednost iz inputa
+            // da izracunate vrednost unetog izraza
+            // pa od njega da racunate koren, kvadrat, sin , cos
+            // i taj rezultat da upisete ponovo u input
+            // Primer: uneseno je 1+2 i klikne se na kvadrat
+            // pokupite ovaj izraz, izracunate ga rezultat je 3
+            // i broj 3 kvadrirate. DObijate 9. To upisete u input
+
+
+           //pomocne funkcije 
+   function  getInputValue(){
+       return document.getElementById('unos').value.trim();
+   }
+   function setInputValue(data){
+       return document.getElementById('unos').value = data;
+   }
+   
+   function onClick(value){
+       let stariUnos = getInputValue();
+       let unos = stariUnos + value;
+       setInputValue(unos);
+       
+   }
+   function calculateValue(){
+       let stariUnos = getInputValue();
+       let unos = eval(stariUnos);
+       setInputValue(unos);    
+   }
+   function clearLastInput(){
+       let stariUnos = getInputValue();
+       let unos = stariUnos.substr(0, stariUnos.length - 1);
+       setInputValue(unos);
+       
+   } 
+   
+   //glavne funkcije
+   
+   function squareRoot(){
+     let stariUnos = getInputValue();
+     let unos = eval(stariUnos);
+     unos = Number(unos);
+     let noviUnos = Math.sqrt(unos);
+     setInputValue(noviUnos);
+   }
+   
+   
+   function squared(){
+     let stariUnos = getInputValue();
+     let unos = eval(stariUnos);
+     unos = Number(unos);
+     let noviUnos = Math.pow(unos, 2);
+     setInputValue(noviUnos);
+   }
+   
+   
+   function sinus(){
+       let stariUnos = getInputValue();
+       let unos = eval(stariUnos);
+       unos = Number(unos);
+       let noviUnos = Math.sin(unos * Math.PI / 180);
+       setInputValue(noviUnos);
+    
+   }
+    function cosinus(){
+       let stariUnos = getInputValue();
+       let unos = eval(stariUnos);
+       unos = Number(unos);
+       let noviUnos = Math.cos(unos * Math.PI / 180);
+       setInputValue(noviUnos);
+    
+   }
+   
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+    </body>
+</html>
